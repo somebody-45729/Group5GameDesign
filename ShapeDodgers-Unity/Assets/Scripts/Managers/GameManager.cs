@@ -1,10 +1,10 @@
-/**** 
+/****
  * Created by: Akram Taghavi-Burris
  * Date Created: Feb 23, 2022
- * 
- * Last Edited by: NA
- * Last Edited: Feb 26, 2022
- * 
+ *
+ * Last Edited by: Haley Kelly
+ * Last Edited: April 13, 2022
+ *
  * Description: Basic GameManager Template
 ****/
 
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     #region GameManager Singleton
     static private GameManager gm; //refence GameManager
-    static public GameManager GM { get { return gm; } } //public access to read only gm 
+    static public GameManager GM { get { return gm; } } //public access to read only gm
 
     //Check to make sure only one gm of the GameManager is in the scene
     void CheckGameManagerIsInScene()
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public GameState gameState = GameState.Title; //first game state
 
     [Header("GENERAL SETTINGS")]
-    public string gameTitle = "Untitled Game";  //name of the game
+    public string gameTitle = "Shape Dodgers";  //name of the game
     public string gameCredits = "Made by Me"; //game creator(s)
     public string copyrightDate = "Copyright " + thisDay; //date cretaed
 
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     public bool recordHighScore = false; //is the High Score recorded
 
     [SerializeField] //Access to private variables in editor
-    private int defaultHighScore = 1000;
+    private int defaultHighScore = 0;
     static public int highScore = 1000; // the default High Score
     public int HighScore { get { return highScore; } set { highScore = value; } }//access to private variable highScore [get/set methods]
 
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     private int numberOfLives; //set number of lives in the inspector
     [Tooltip("Does the level get reset when a life is lost")]
     public bool resetLostLevel; //reset the lost level
-    static public int lives; // number of lives for player 
+    static public int lives; // number of lives for player
     public int Lives { get { return lives; } set { lives = value; } }//access to static variable lives [get/set methods]
 
     static public int score;  //score value
@@ -208,7 +208,7 @@ public class GameManager : MonoBehaviour
         //load first game level
         SceneManager.LoadScene(gameLevels[loadLevel]);
 
-        SetDefaultGameStats(); // the game stats defaults 
+        SetDefaultGameStats(); // the game stats defaults
 
     }//end StartGame()
 
@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
                 highScore = defaultHighScore; //set the high score to defulat
                 PlayerPrefs.SetInt("HighScore", highScore); //update high score PlayerPref
             }//end if (highScore <= defaultHighScore)
-        }//end  if (recordHighScore) 
+        }//end  if (recordHighScore)
 
         endMsg = defaultEndMessage; //set the end message default
 
@@ -263,8 +263,8 @@ public class GameManager : MonoBehaviour
 
     //GO TO THE NEXT LEVEL
     void NextLevel()
-    { 
-        
+    {
+
         //as long as our level count is not more than the amount of levels
         if (gameLevelsCount < gameLevels.Length)
         {
@@ -290,10 +290,10 @@ public class GameManager : MonoBehaviour
         {
             GameOver(); //game is over
 
-        } 
+        }
         else
         {
-            lives--; //subtract from lives reset level lost 
+            lives--; //subtract from lives reset level lost
 
             //if this level resets when life is lost
             if (resetLostLevel){
@@ -307,9 +307,9 @@ public class GameManager : MonoBehaviour
 
     //CHECK SCORE UPDATES
     public void UpdateScore(int point = 0)
-    { //This method manages the score on update. 
+    { //This method manages the score on update.
 
-        score += point; 
+        score += point;
 
         //if the score is more than the high score
         if (score > highScore)
