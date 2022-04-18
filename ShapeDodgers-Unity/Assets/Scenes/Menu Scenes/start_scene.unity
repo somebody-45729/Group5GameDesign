@@ -167,16 +167,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 0
-  gameTitle: Untitled Game
-  gameCredits: Made by Me
+  gameTitle: SHAPE DODGERS
+  gameCredits: 'Game Designed by : Haley Kelly, J.P. Tucker, Kyunghoon Han'
   copyrightDate: Copyright 2022
   recordHighScore: 1
   defaultHighScore: 1000
   numberOfLives: 3
   resetLostLevel: 0
   defaultEndMessage: Game Over
-  looseMessage: You Loose
-  winMessage: You Win
+  looseMessage: Try Again?
+  winMessage: You Win!
   endMsg: 
   startScene: start_scene
   gameOverScene: end_scene
