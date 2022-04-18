@@ -22,8 +22,15 @@ public class Playerstar : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            var directionVector = Vector3.Normalize(targetPos - transform.position);
-            transform.position = transform.position + dashLength * directionVector;
+            if (Vector3.Magnitude(targetPos - transform.position) > dashLength)
+            {
+                var directionVector = Vector3.Normalize(targetPos - transform.position);
+                transform.position = transform.position + dashLength * directionVector;
+            }
+            else
+            {
+                transform.position = targetPos;
+            }
         }
     }
 }
