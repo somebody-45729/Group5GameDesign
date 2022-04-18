@@ -1,10 +1,10 @@
-/****
+/**** 
  * Created by: Akram Taghavi-Burris
  * Date Created: Feb 23, 2022
- *
- * Last Edited by: Haley Kelly
- * Last Edited: April 17, 2022
- *
+ * 
+ * Last Edited by: NA
+ * Last Edited: Feb 23, 2022
+ * 
  * Description: Updates HUD canvas referecing game manager
 ****/
 
@@ -22,15 +22,15 @@ public class HUDCanvas : MonoBehaviour
     [Header("Canvas SETTINGS")]
     public Text levelTextbox; //textbox for level count
     public Text livesTextbox; //textbox for the lives
-    public Text timerTextbox; //textbox for the score
-    //public Text highScoreTextbox; //textbox for highscore
-
+    public Text scoreTextbox; //textbox for the score
+    public Text highScoreTextbox; //textbox for highscore
+    
     //GM Data
     private int level;
     private int totalLevels;
     private int lives;
-    private float timer;
-    //private int highscore;
+    private int score;
+    private int highscore;
 
     private void Start()
     {
@@ -38,7 +38,7 @@ public class HUDCanvas : MonoBehaviour
 
         //reference to levle info
         level = gm.gameLevelsCount;
-        //totalLevels = gm.gameLevels.Length;
+        totalLevels = gm.gameLevels.Length;
 
 
 
@@ -55,17 +55,17 @@ public class HUDCanvas : MonoBehaviour
     void GetGameStats()
     {
         lives = gm.Lives;
-        timer = gm.Timer;
-        //highscore = gm.HighScore;
+        score = gm.Score;
+        highscore = gm.HighScore;
     }
 
     void SetHUD()
     {
         //if texbox exsists update value
-        if (levelTextbox) { levelTextbox.text = "Level " + (level+1); }
+        if (levelTextbox) { levelTextbox.text = "Level " + level + "/" + totalLevels; }
         if (livesTextbox) { livesTextbox.text = "Lives " + lives; }
-        if (timerTextbox) { timerTextbox.text = "" + Mathf.Round(timer); }
-      //if (highScoreTextbox) { highScoreTextbox.text = "High Score " + highscore; }
+        if (scoreTextbox) { scoreTextbox.text = "Score " + score; }
+        if (highScoreTextbox) { highScoreTextbox.text = "High Score " + highscore; }
 
     }//end SetHUD()
 

@@ -36,26 +36,23 @@ public class BossScript: MonoBehaviour
     public GameObject eyeWhite; // attach eye white gameobject!
     public GameObject eyePupil; // attach eye pupil gameobject!
     public RectTransform pupilTransform;
-    public SpriteRenderer bossSpriteRenderer;
 
     void Start(){
        pupilTransform = eyePupil.GetComponent<RectTransform>();
-       bossSpriteRenderer = GetComponent<SpriteRenderer>();
-       bossSpriteRenderer.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
+
     } // end start
 
     public void Move(float speed, Vector3 newpos){
       boss.transform.position = Vector3.MoveTowards(boss.transform.position, newpos, speed * Time.deltaTime);
     } // end move
 
+    public void PreAttack(){
+
+    } // end preattack
+
     public void Fire(){
 
     } // end fire
-
-    public void Preattack(){
-        bossSpriteRenderer.color = Color.Lerp(new Color(1.0f, 0.0f, 1.0f, 1.0f), new Color(0.7f, 0.0f, 0.55f, 1.0f), (Time.time) / 0.9f);
-        bossSpriteRenderer.color = Color.Lerp(new Color(0.7f, 0.0f, 0.55f, 1.0f), new Color(1.0f, 0.0f, 1.0f, 1.0f), (Time.time) / 0.9f);
-    }
 
     void EyeTrackingPlayer(){ // FINISHED
       // eye tracking player
@@ -73,7 +70,6 @@ public class BossScript: MonoBehaviour
 
     void FixedUpdate(){
       EyeTrackingPlayer();
-
     } // end fixedupdate
 
 
