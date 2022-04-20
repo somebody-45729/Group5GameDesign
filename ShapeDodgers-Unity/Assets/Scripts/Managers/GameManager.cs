@@ -92,6 +92,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("Name of the game over scene")]
     public string gameOverScene;
 
+    [Tooltip("Name of the game win scene")]
+    public string gameWinScene;
+
     [Tooltip("Count and name of each Game Level (scene)")]
     public string[] gameLevels; //names of levels
     [HideInInspector]
@@ -174,6 +177,10 @@ public class GameManager : MonoBehaviour
 
     }//end Update
 
+    public void ResetTimer(){
+      timeRemaining = 60f;
+    }
+
 
     //SET GAME STATES
     public void SetGameState(GameState state)
@@ -227,6 +234,7 @@ public class GameManager : MonoBehaviour
 
         //load first game level
         SceneManager.LoadScene(gameLevels[loadLevel]);
+        ResetTimer();
 
         SetDefaultGameStats(); // the game stats defaults
 
@@ -280,6 +288,14 @@ public class GameManager : MonoBehaviour
 
     }//end GameOver()
 
+    public void GameWin()
+    {
+        SetGameState(GameState.GameOver);//set the game state to Game Over
+
+        SceneManager.LoadScene(gameWinScene); //load the game win scene
+
+    }//end GameOver()
+
 
     //GO TO THE NEXT LEVEL
     void NextLevel()
@@ -293,11 +309,12 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(gameLevels[loadLevel]); //load next level
 
             SetGameState(GameState.Playing);//set the game state to playing
+            ResetTimer();
 
         }
         else
         { //if we have run out of levels go to game over
-            GameOver();
+            GameWin();
         } //end if (gameLevelsCount <=  gameLevels.Length)
 
     }//end NextLevel()
