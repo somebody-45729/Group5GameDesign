@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class Playerstar : MonoBehaviour
 {
+    GameManager gm; //reference to game manager
     public float speed = 1f;
     public float dashLength = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
+      gm = GameManager.GM; //find the game manager
 
+    }
+
+    void OnCollisionEnter2D(Collision2D hitBy)
+    {
+      if (hitBy.transform.tag == "Boss"){
+        Debug.Log("Boss hit player!");
+        this.transform.position = new Vector3(-10,-3.5f,0);
+        gm.LostLife();
+      }
+      if (hitBy.transform.tag == "Projectile"){
+        Debug.Log("Projectile hit player!");
+        gm.LostLife();
+      }
     }
 
     // Update is called once per frame

@@ -21,8 +21,16 @@ public class HUDCanvas : MonoBehaviour
 
     [Header("Canvas SETTINGS")]
     public Text levelTextbox; //textbox for level count
-    public Text livesTextbox; //textbox for the lives
+    public GameObject livesBox; //gameobject for the lives
+    public GameObject livesColor; // gameobject for the blue in the livesbox
     public Text timerTextbox; //textbox for the score
+
+    public Vector3 threeLivesLeftPosition = new Vector3(0, 0, 0);
+    public Vector3 twoLivesLeftPosition = new Vector3(-100, 0, 0);
+    public Vector3 oneLifeLeftPosition = new Vector3(-200, 0, 0);
+    public Vector3 noLivesLeftPosition = new Vector3(-400, 0, 0);
+    public float lifeBoxDecreaseSpeed = 20.0f;
+
     //public Text highScoreTextbox; //textbox for highscore
 
     //GM Data
@@ -61,9 +69,22 @@ public class HUDCanvas : MonoBehaviour
 
     void SetHUD()
     {
-        //if texbox exsists update value
-        if (levelTextbox) { levelTextbox.text = "Level " + (level+1); }
-        if (livesTextbox) { livesTextbox.text = "Lives " + lives; }
+        //if textbox exists update value
+        if (levelTextbox) { levelTextbox.text = "Level " + (level); }
+        if (livesBox) {
+            if (lives == 3){
+              livesColor.GetComponent<RectTransform>().anchoredPosition= Vector3.MoveTowards(livesColor.GetComponent<RectTransform>().anchoredPosition, threeLivesLeftPosition, lifeBoxDecreaseSpeed * Time.deltaTime);
+            }
+            else if (lives == 2){
+                            livesColor.GetComponent<RectTransform>().anchoredPosition= Vector3.MoveTowards(livesColor.GetComponent<RectTransform>().anchoredPosition, twoLivesLeftPosition, lifeBoxDecreaseSpeed * Time.deltaTime);
+            }
+            else if (lives == 1){
+                            livesColor.GetComponent<RectTransform>().anchoredPosition= Vector3.MoveTowards(livesColor.GetComponent<RectTransform>().anchoredPosition, oneLifeLeftPosition, lifeBoxDecreaseSpeed * Time.deltaTime);
+            }
+            else if (lives == 0){
+                            livesColor.GetComponent<RectTransform>().anchoredPosition= Vector3.MoveTowards(livesColor.GetComponent<RectTransform>().anchoredPosition, noLivesLeftPosition, lifeBoxDecreaseSpeed * Time.deltaTime);
+            }
+        } // end livesbox
         if (timerTextbox) { timerTextbox.text = "" + Mathf.Round(timer); }
       //if (highScoreTextbox) { highScoreTextbox.text = "High Score " + highscore; }
 

@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
         CheckGameState();
 
         //Outpot game state
-        Debug.Log("Game State " + gameState);
+        //Debug.Log("Game State " + gameState);
 
         if (timerIsRunning)
       {
@@ -306,6 +306,7 @@ public class GameManager : MonoBehaviour
     //PLAYER LOST A LIFE
     public void LostLife()
     {
+
         if (lives == 1) //if there is one life left and it is lost
         {
             GameOver(); //game is over
