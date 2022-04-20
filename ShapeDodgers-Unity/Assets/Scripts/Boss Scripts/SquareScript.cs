@@ -12,16 +12,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-  // Move(1, new Vector3(0, 2, 0));
+  // Move(1, new Vector3(0, 2, 0)); 
 
 public class SquareScript : BossScript
 {
-
-    void attackSequence1(){
-      Preattack();
-
-    }
-
     void Start()
     {
 
@@ -30,7 +24,6 @@ public class SquareScript : BossScript
     // Update is called once per frame
     void Update()
     {
-
 
     }
 }

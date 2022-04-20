@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -170,17 +170,16 @@ MonoBehaviour:
   gameTitle: SHAPE DODGERS
   gameCredits: 'Game Designed by : Haley Kelly, J.P. Tucker, Kyunghoon Han'
   copyrightDate: Copyright 2022
+  recordHighScore: 1
+  defaultHighScore: 1000
   numberOfLives: 3
   resetLostLevel: 0
-  timeRemaining: 60
-  timerIsRunning: 0
   defaultEndMessage: Game Over
   looseMessage: Try Again?
   winMessage: You Win!
   endMsg: 
   startScene: start_scene
   gameOverScene: end_scene
-  gameWinScene: win_scene
   gameLevels:
   - level_00
   - level_01
