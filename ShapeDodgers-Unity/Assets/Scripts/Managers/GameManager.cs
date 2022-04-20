@@ -3,7 +3,7 @@
  * Date Created: Feb 23, 2022
  *
  * Last Edited by: Haley Kelly
- * Last Edited: April 13, 2022
+ * Last Edited: April 17, 2022
  *
  * Description: Basic GameManager Template
 ****/
@@ -54,13 +54,13 @@ public class GameManager : MonoBehaviour
 
     [Header("GAME SETTINGS")]
 
-    [Tooltip("Will the high score be recoreded")]
-    public bool recordHighScore = false; //is the High Score recorded
+    //[Tooltip("Will the high score be recoreded")]
+    //public bool recordHighScore = false; //is the High Score recorded
 
-    [SerializeField] //Access to private variables in editor
-    private int defaultHighScore = 0;
-    static public int highScore = 1000; // the default High Score
-    public int HighScore { get { return highScore; } set { highScore = value; } }//access to private variable highScore [get/set methods]
+    //[SerializeField] //Access to private variables in editor
+    //private int defaultHighScore = 0;
+    //static public int highScore = 1000; // the default High Score
+    //public int HighScore { get { return highScore; } set { highScore = value; } }//access to private variable highScore [get/set methods]
 
     [Space(10)]
 
@@ -71,13 +71,17 @@ public class GameManager : MonoBehaviour
     public bool resetLostLevel; //reset the lost level
     static public int lives; // number of lives for player
     public int Lives { get { return lives; } set { lives = value; } }//access to static variable lives [get/set methods]
+    public float timeRemaining = 60;
+    public bool timerIsRunning = false;
+    public float Timer { get { return timeRemaining; } }//access to static variable score [get/set methods]
+
 
     static public int score;  //score value
     public int Score { get { return score; } set { score = value; } }//access to static variable score [get/set methods]
 
     [Space(10)]
     public string defaultEndMessage = "Game Over";//the end screen message, depends on winning outcome
-    public string looseMessage = "You Loose"; //Message if player looses
+    public string looseMessage = "You Lose"; //Message if player looses
     public string winMessage = "You Win"; //Message if player wins
     [HideInInspector] public string endMsg;//the end screen message, depends on winning outcome
 
@@ -87,6 +91,9 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("Name of the game over scene")]
     public string gameOverScene;
+
+    [Tooltip("Name of the game win scene")]
+    public string gameWinScene;
 
     [Tooltip("Count and name of each Game Level (scene)")]
     public string[] gameLevels; //names of levels
@@ -128,7 +135,7 @@ public class GameManager : MonoBehaviour
         currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
         //Get the saved high score
-        GetHighScore();
+        //GetHighScore();
 
     }//end Awake()
 
@@ -137,6 +144,7 @@ public class GameManager : MonoBehaviour
     {
         //if we run play the game from the level instead of start scene
         if (currentSceneName != startScene) { SetDefaultGameStats(); }
+        timerIsRunning = true;
 
     }//end Start()
 
@@ -150,9 +158,28 @@ public class GameManager : MonoBehaviour
         CheckGameState();
 
         //Outpot game state
-        Debug.Log("Game State " + gameState);
+        //Debug.Log("Game State " + gameState);
+
+        if (timerIsRunning)
+      {
+          if (timeRemaining > 0)
+          {
+              timeRemaining -= Time.deltaTime;
+          }
+          else
+          {
+              Debug.Log("Level beat!");
+              SetGameState(GameState.BeatLevel);
+              timeRemaining = 0;
+              timerIsRunning = false;
+          }
+      }
 
     }//end Update
+
+    public void ResetTimer(){
+      timeRemaining = 60f;
+    }
 
 
     //SET GAME STATES
@@ -207,6 +234,7 @@ public class GameManager : MonoBehaviour
 
         //load first game level
         SceneManager.LoadScene(gameLevels[loadLevel]);
+        ResetTimer();
 
         SetDefaultGameStats(); // the game stats defaults
 
@@ -221,10 +249,10 @@ public class GameManager : MonoBehaviour
 
         //SET ALL GAME LEVEL VARIABLES FOR START OF GAME
         lives = numberOfLives; //set the number of lives
-        score = 0; //set starting score
+        score = 3; //set starting score
 
         //set High Score
-        if (recordHighScore) //if we are recording highscore
+      /*  if (recordHighScore) //if we are recording highscore
         {
             //if the high score, is less than the default high score
             if (highScore <= defaultHighScore)
@@ -232,7 +260,7 @@ public class GameManager : MonoBehaviour
                 highScore = defaultHighScore; //set the high score to defulat
                 PlayerPrefs.SetInt("HighScore", highScore); //update high score PlayerPref
             }//end if (highScore <= defaultHighScore)
-        }//end  if (recordHighScore)
+        }//end  if (recordHighScore)*/
 
         endMsg = defaultEndMessage; //set the end message default
 
@@ -260,6 +288,14 @@ public class GameManager : MonoBehaviour
 
     }//end GameOver()
 
+    public void GameWin()
+    {
+        SetGameState(GameState.GameOver);//set the game state to Game Over
+
+        SceneManager.LoadScene(gameWinScene); //load the game win scene
+
+    }//end GameOver()
+
 
     //GO TO THE NEXT LEVEL
     void NextLevel()
@@ -273,11 +309,12 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(gameLevels[loadLevel]); //load next level
 
             SetGameState(GameState.Playing);//set the game state to playing
+            ResetTimer();
 
         }
         else
         { //if we have run out of levels go to game over
-            GameOver();
+            GameWin();
         } //end if (gameLevelsCount <=  gameLevels.Length)
 
     }//end NextLevel()
@@ -286,6 +323,7 @@ public class GameManager : MonoBehaviour
     //PLAYER LOST A LIFE
     public void LostLife()
     {
+
         if (lives == 1) //if there is one life left and it is lost
         {
             GameOver(); //game is over
@@ -311,16 +349,17 @@ public class GameManager : MonoBehaviour
 
         score += point;
 
+        /*
         //if the score is more than the high score
         if (score > highScore)
         {
             highScore = score; //set the high score to the current score
             PlayerPrefs.SetInt("HighScore", highScore); //set the playerPref for the high score
-        }//end if(score > highScore)
+        }//end if(score > highScore)*/
 
     }//end CheckScore()
 
-    void GetHighScore()
+    /*void GetHighScore()
     {//Get the saved highscore
 
         //if the PlayerPref alredy exists for the high score
@@ -331,7 +370,7 @@ public class GameManager : MonoBehaviour
         }//end if (PlayerPrefs.HasKey("HighScore"))
 
         PlayerPrefs.SetInt("HighScore", highScore); //set the playerPref for the high score
-    }//end GetHighScore()
+    }//end GetHighScore()*/
 
 
     private void RunTests()

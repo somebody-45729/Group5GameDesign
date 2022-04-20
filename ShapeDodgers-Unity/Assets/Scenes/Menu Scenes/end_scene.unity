@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,24 +153,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 0
-  gameTitle: Untitled Game
-  gameCredits: Made by Me
+  gameTitle: Shape Dodgers
+  gameCredits: Haley Kelly, J.P. Tucker, Kyunghoon Han
   copyrightDate: Copyright 2022
-  recordHighScore: 1
-  defaultHighScore: 1000
-  numberOfLives: 0
+  numberOfLives: 3
   resetLostLevel: 0
+  timeRemaining: 60
+  timerIsRunning: 0
   defaultEndMessage: Game Over
-  looseMessage: You Loose
-  winMessage: You Win
+  looseMessage: Game Lost
+  winMessage: Game Won
   endMsg: 
   startScene: start_scene
   gameOverScene: end_scene
+  gameWinScene: win_scene
   gameLevels:
   - level_00
   - level_01
   gameLevelsCount: 0
-  TestGameManager: 0
+  TestGameManager: 1
   levelLost: 0
   nextLevel: 0
   playerWon: 0

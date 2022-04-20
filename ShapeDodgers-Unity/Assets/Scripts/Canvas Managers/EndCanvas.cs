@@ -1,10 +1,10 @@
-/**** 
+/****
  * Created by: Akram Taghavi-Burris
  * Date Created: Feb 23, 2022
- * 
+ *
  * Last Edited by: NA
  * Last Edited: Feb 23, 2022
- * 
+ *
  * Description: Updates end canvas refencing game manger
 ****/
 

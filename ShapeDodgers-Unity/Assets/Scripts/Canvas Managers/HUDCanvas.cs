@@ -1,10 +1,10 @@
-/**** 
+/****
  * Created by: Akram Taghavi-Burris
  * Date Created: Feb 23, 2022
- * 
- * Last Edited by: NA
- * Last Edited: Feb 23, 2022
- * 
+ *
+ * Last Edited by: Haley Kelly
+ * Last Edited: April 17, 2022
+ *
  * Description: Updates HUD canvas referecing game manager
 ****/
 
@@ -21,16 +21,24 @@ public class HUDCanvas : MonoBehaviour
 
     [Header("Canvas SETTINGS")]
     public Text levelTextbox; //textbox for level count
-    public Text livesTextbox; //textbox for the lives
-    public Text scoreTextbox; //textbox for the score
-    public Text highScoreTextbox; //textbox for highscore
-    
+    public GameObject livesBox; //gameobject for the lives
+    public GameObject livesColor; // gameobject for the blue in the livesbox
+    public Text timerTextbox; //textbox for the score
+
+    public Vector3 threeLivesLeftPosition = new Vector3(0, 0, 0);
+    public Vector3 twoLivesLeftPosition = new Vector3(-100, 0, 0);
+    public Vector3 oneLifeLeftPosition = new Vector3(-200, 0, 0);
+    public Vector3 noLivesLeftPosition = new Vector3(-400, 0, 0);
+    public float lifeBoxDecreaseSpeed = 20.0f;
+
+    //public Text highScoreTextbox; //textbox for highscore
+
     //GM Data
     private int level;
     private int totalLevels;
     private int lives;
-    private int score;
-    private int highscore;
+    private float timer;
+    //private int highscore;
 
     private void Start()
     {
@@ -38,7 +46,7 @@ public class HUDCanvas : MonoBehaviour
 
         //reference to levle info
         level = gm.gameLevelsCount;
-        totalLevels = gm.gameLevels.Length;
+        //totalLevels = gm.gameLevels.Length;
 
 
 
@@ -55,17 +63,30 @@ public class HUDCanvas : MonoBehaviour
     void GetGameStats()
     {
         lives = gm.Lives;
-        score = gm.Score;
-        highscore = gm.HighScore;
+        timer = gm.Timer;
+        //highscore = gm.HighScore;
     }
 
     void SetHUD()
     {
-        //if texbox exsists update value
-        if (levelTextbox) { levelTextbox.text = "Level " + level + "/" + totalLevels; }
-        if (livesTextbox) { livesTextbox.text = "Lives " + lives; }
-        if (scoreTextbox) { scoreTextbox.text = "Score " + score; }
-        if (highScoreTextbox) { highScoreTextbox.text = "High Score " + highscore; }
+        //if textbox exists update value
+        if (levelTextbox) { levelTextbox.text = "Level " + (level); }
+        if (livesBox) {
+            if (lives == 3){
+              livesColor.GetComponent<RectTransform>().anchoredPosition= Vector3.MoveTowards(livesColor.GetComponent<RectTransform>().anchoredPosition, threeLivesLeftPosition, lifeBoxDecreaseSpeed * Time.deltaTime);
+            }
+            else if (lives == 2){
+                            livesColor.GetComponent<RectTransform>().anchoredPosition= Vector3.MoveTowards(livesColor.GetComponent<RectTransform>().anchoredPosition, twoLivesLeftPosition, lifeBoxDecreaseSpeed * Time.deltaTime);
+            }
+            else if (lives == 1){
+                            livesColor.GetComponent<RectTransform>().anchoredPosition= Vector3.MoveTowards(livesColor.GetComponent<RectTransform>().anchoredPosition, oneLifeLeftPosition, lifeBoxDecreaseSpeed * Time.deltaTime);
+            }
+            else if (lives == 0){
+                            livesColor.GetComponent<RectTransform>().anchoredPosition= Vector3.MoveTowards(livesColor.GetComponent<RectTransform>().anchoredPosition, noLivesLeftPosition, lifeBoxDecreaseSpeed * Time.deltaTime);
+            }
+        } // end livesbox
+        if (timerTextbox) { timerTextbox.text = "" + Mathf.Round(timer); }
+      //if (highScoreTextbox) { highScoreTextbox.text = "High Score " + highscore; }
 
     }//end SetHUD()
 

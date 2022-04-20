@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &527939838
+--- !u!1 &95156171
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,8 +131,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 527939839}
-  - component: {fileID: 527939840}
+  - component: {fileID: 95156173}
+  - component: {fileID: 95156172}
   m_Layer: 0
   m_Name: _GameManager
   m_TagString: Untagged
@@ -140,43 +140,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &527939839
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527939838}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &527939840
+--- !u!114 &95156172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527939838}
+  m_GameObject: {fileID: 95156171}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d49296548f6742498c9896ffedace25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 0
-  gameTitle: SHAPE DODGERS
-  gameCredits: 'Game Designed by : Haley Kelly, J.P. Tucker, Kyunghoon Han'
+  gameTitle: Shape Dodgers
+  gameCredits: Haley Kelly, J.P. Tucker, Kyunghoon Han
   copyrightDate: Copyright 2022
   numberOfLives: 3
   resetLostLevel: 0
   timeRemaining: 60
   timerIsRunning: 0
   defaultEndMessage: Game Over
-  looseMessage: Try Again?
-  winMessage: You Win!
+  looseMessage: Game Lost
+  winMessage: Game Won
   endMsg: 
   startScene: start_scene
   gameOverScene: end_scene
@@ -189,6 +175,20 @@ MonoBehaviour:
   levelLost: 0
   nextLevel: 0
   playerWon: 0
+--- !u!4 &95156173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95156171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &660969369
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,12 +304,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 660969369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b33244b016f29ff4f8df86b07a5b1860, type: 3}
+  m_Script: {fileID: 11500000, guid: cc79d7a4464472649af30795781c92f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleTextbox: {fileID: 1603986571}
-  creditsTextbox: {fileID: 1325284405}
-  copyrightTextbox: {fileID: 1929308369}
+  endMsgTextbox: {fileID: 1603986571}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +717,7 @@ GameObject:
   - component: {fileID: 1163106618}
   - component: {fileID: 1163106617}
   m_Layer: 5
-  m_Name: btn_Start
+  m_Name: btn_Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -790,8 +788,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 660969374}
-        m_TargetAssemblyTypeName: StartCanvas, Assembly-CSharp
-        m_MethodName: GameStart
+        m_TargetAssemblyTypeName: EndCanvas, Assembly-CSharp
+        m_MethodName: GameRestart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -814,7 +812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9245283, g: 0.37395844, b: 0.25642577, a: 1}
+  m_Color: {r: 0.9490196, g: 0.7294118, b: 0.32156864, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -909,7 +907,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Game Designed by : Haley Kelly, J.P. Tucker, Kyunghoon Han'
+  m_Text: 'Game Designed by : Your Name Here'
 --- !u!222 &1325284406
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -930,7 +928,7 @@ GameObject:
   - component: {fileID: 1435434218}
   - component: {fileID: 1435434217}
   m_Layer: 5
-  m_Name: txt_Start
+  m_Name: txt_Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -988,7 +986,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: START GAME
+  m_Text: RESTART
 --- !u!222 &1435434218
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1081,7 +1079,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 660969374}
-        m_TargetAssemblyTypeName: StartCanvas, Assembly-CSharp
+        m_TargetAssemblyTypeName: EndCanvas, Assembly-CSharp
         m_MethodName: GameExit
         m_Mode: 1
         m_Arguments:
@@ -1105,14 +1103,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9490196, g: 0.33925563, b: 0.32156864, a: 1}
+  m_Color: {r: 0.9490196, g: 0.7294118, b: 0.32156864, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1142,7 +1140,7 @@ GameObject:
   - component: {fileID: 1603986572}
   - component: {fileID: 1603986571}
   m_Layer: 5
-  m_Name: txt_GameTitle
+  m_Name: txt_EndMsg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1180,7 +1178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7830189, g: 0.13592024, b: 0.13592024, a: 1}
+  m_Color: {r: 0.9490196, g: 0.7294118, b: 0.32156864, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1200,7 +1198,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SHAPE DODGERS
+  m_Text: Game Won!
 --- !u!222 &1603986572
 CanvasRenderer:
   m_ObjectHideFlags: 0
