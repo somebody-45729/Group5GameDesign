@@ -6596,11 +6596,11 @@ PrefabInstance:
       objectReference: {fileID: 874848194}
     - target: {fileID: 515666744168126513, guid: f89fffef2a5a442c38399b828e9be4f8, type: 3}
       propertyPath: poolSize1
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 515666744168126513, guid: f89fffef2a5a442c38399b828e9be4f8, type: 3}
       propertyPath: poolSize2
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 515666744168126526, guid: f89fffef2a5a442c38399b828e9be4f8, type: 3}
       propertyPath: m_RootOrder
