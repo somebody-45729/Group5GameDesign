@@ -29,7 +29,7 @@ public class Playerstar : MonoBehaviour
             gm.LostLife();
             bulletSpawner.GetComponent<BulletSpawner>().LostLifeReset();
         }
-        else if ((hitBy.transform.tag == "ProjectileLong")||(hitBy.transform.tag == "ProjectileRound"))
+        else if (hitBy.transform.tag == "Projectile")
         {
             Debug.Log("Projectile hit player!");
             this.GetComponent<TrailRenderer>().emitting = false; //stop dash animation before move starts

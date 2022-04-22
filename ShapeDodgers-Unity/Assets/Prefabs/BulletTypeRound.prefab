@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1420867689440885144}
   m_Layer: 8
   m_Name: BulletTypeRound
-  m_TagString: ProjectileRound
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,6 +155,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletSpawner: {fileID: 515666744168126527, guid: f89fffef2a5a442c38399b828e9be4f8, type: 3}
   shot: 0
-  shotOnce: 0
   angle: 0
-  force: 0
+  speed: 0
+  location: 0
+  curve: 0
+  moveOutSpeedx: 0
+  moveOutSpeedy: 0
+  expansion: 0

@@ -56,9 +56,7 @@ public class SquareScript : BossScript
     /************** FOR PATTERNS: **************
       yield return new WaitForSeconds(0.5f); // waits 0.5 seconds
 
-      b.ShootOne(round, angle, speed);
-          * when round == true, a round bullet will be shot
-          * when round == false, a long bullet will be shot
+      b.ShootOne(angle, speed);
           * For angle: Q1 == 0 to 45 ; Q2 == 45 to 90; Q3 == 90 to 135; Q4 == 135 to 180/0
           * 8 seems like a reasonable speed.
 
@@ -66,31 +64,31 @@ public class SquareScript : BossScript
     */
 
     void FireRandom() { // fires a bullet in each direction
-        b.ShootOne(true, Random.Range(0f, 45f), 4); b.ShootOne(true, Random.Range(45f, 90f), 4); b.ShootOne(true, Random.Range(90f, 135f), 4); b.ShootOne(true, Random.Range(135f, 180f), 4);
+        b.ShootOne(Random.Range(0f, 45f), 4); b.ShootOne(Random.Range(45f, 90f), 4); b.ShootOne(Random.Range(90f, 135f), 4); b.ShootOne(Random.Range(135f, 180f), 4);
     } // end fireRandom
 
     IEnumerator PatternOne() {
         yield return new WaitForSeconds(0.5f); // waits 0.5 seconds
-        b.ShootOne(true, 0, 4); b.ShootOne(true, 30, 4); b.ShootOne(true, 60, 4); b.ShootOne(true, 90, 4);
+        b.ShootOne(0, 4); b.ShootOne(30, 4); b.ShootOne(60, 4); b.ShootOne(90, 4);
         yield return new WaitForSeconds(0.5f);
-        b.ShootOne(true, 90, 4); b.ShootOne(true, 120, 4); b.ShootOne(true, 150, 4); b.ShootOne(true, 180, 4);
+        b.ShootOne(90, 4); b.ShootOne(120, 4); b.ShootOne(150, 4); b.ShootOne(180, 4);
         yield return new WaitForSeconds(0.5f);
     } // end patternOne
 
     IEnumerator PatternTwo() {
         yield return new WaitForSeconds(0.5f); // waits 0.5 seconds
-        b.ShootOne(true, 90, 4); b.ShootOne(true, 120, 4); b.ShootOne(true, 150, 4); b.ShootOne(true, 180, 4);
+        b.ShootOne(90, 4); b.ShootOne(120, 4); b.ShootOne(150, 4); b.ShootOne(180, 4);
         yield return new WaitForSeconds(0.5f);
-        b.ShootOne(true, 0, 4); b.ShootOne(true, 30, 4); b.ShootOne(true, 60, 4); b.ShootOne(true, 90, 4);
+        b.ShootOne(0, 4); b.ShootOne(30, 4); b.ShootOne(60, 4); b.ShootOne(90, 4);
         yield return new WaitForSeconds(0.5f);
     } // end patternTwo
 
     IEnumerator PatternThree() {
         yield return new WaitForSeconds(0.5f); // waits 0.5 seconds
-        b.ShootOne(true, 0, 8); b.ShootOne(true, 12, 8); b.ShootOne(true, 24, 8); b.ShootOne(true, 36, 8); b.ShootOne(true, 48, 8);
-        b.ShootOne(true, 60, 8); b.ShootOne(true, 72, 8); b.ShootOne(true, 84, 8); b.ShootOne(true, 96, 8); b.ShootOne(true, 108, 8);
-        b.ShootOne(true, 112, 8); b.ShootOne(true, 124, 8); b.ShootOne(true, 136, 8); b.ShootOne(true, 148, 8); b.ShootOne(true, 152, 8);
-        b.ShootOne(true, 164, 8); b.ShootOne(true, 176, 8);
+        b.ShootOne(0, 8); b.ShootOne(12, 8); b.ShootOne(24, 8); b.ShootOne(36, 8); b.ShootOne(48, 8);
+        b.ShootOne(60, 8); b.ShootOne(72, 8); b.ShootOne(84, 8); b.ShootOne(96, 8); b.ShootOne(108, 8);
+        b.ShootOne(112, 8); b.ShootOne(124, 8); b.ShootOne(136, 8); b.ShootOne(148, 8); b.ShootOne(152, 8);
+        b.ShootOne(164, 8); b.ShootOne(176, 8);
         yield return new WaitForSeconds(0.5f);
     } // end patternThree
 

@@ -5,8 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Boss
-  - ProjectileRound
-  - ProjectileLong
+  - Projectile
   layers:
   - Default
   - TransparentFX
