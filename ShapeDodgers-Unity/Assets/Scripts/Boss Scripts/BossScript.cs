@@ -36,17 +36,14 @@ public class BossScript: MonoBehaviour
     public RectTransform pupilTransform;
     public SpriteRenderer bossSpriteRenderer;
 
-    public bool preAttack = false;
+    public Vector3 newpos = new Vector3(0, 0, 0);
+    public float movespeed = 2f;
 
     void Start(){
        pupilTransform = eyePupil.GetComponent<RectTransform>();
        bossSpriteRenderer = GetComponent<SpriteRenderer>();
        bossSpriteRenderer.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
     } // end start
-
-    public void Move(float speed, Vector3 newpos){
-      boss.transform.position = Vector3.MoveTowards(boss.transform.position, newpos, speed * Time.deltaTime);
-    } // end move
 
     public void Fire(){
 
@@ -68,12 +65,7 @@ public class BossScript: MonoBehaviour
 
     void FixedUpdate(){
       EyeTrackingPlayer();
-      if (preAttack){
-          bossSpriteRenderer.color = Color.Lerp(new Color(1.0f, 0.0f, 1.0f, 1.0f), new Color(0.7f, 0.0f, 0.55f, 1.0f), (Time.time) / 3f);
-      }
-      else {
-          bossSpriteRenderer.color = Color.Lerp(new Color(0.7f, 0.0f, 0.55f, 1.0f), new Color(1.0f, 0.0f, 1.0f, 1.0f), (Time.time) / 3f);
-      }
+      boss.transform.position = Vector3.MoveTowards(boss.transform.position, newpos, movespeed * Time.deltaTime);
 
     } // end fixedupdate
 

@@ -47,8 +47,6 @@ public class BulletSpawner : MonoBehaviour
           shootme.GetComponent<BulletScript>().angle = angle;
           shootme.GetComponent<BulletScript>().speed = speed;
           shootme.GetComponent<BulletScript>().curve = 0f;
-          shootme.GetComponent<BulletScript>().moveOutSpeedx = 0f;
-          shootme.GetComponent<BulletScript>().moveOutSpeedy = 0f;
           shootme.GetComponent<BulletScript>().expansion = 0f;
         } // if
         else {
@@ -57,8 +55,7 @@ public class BulletSpawner : MonoBehaviour
     //bossScript.preAttack = false;
   } // end shootone
 
-  public void ShootOneSpin(float angle, float speed, float curve, float moveOutSpeedx, float moveOutSpeedy,
-                            float expansion){
+  public void ShootOneSpin(float angle, float speed, float curve, float expansion){
     //bossScript.preAttack = true;
       if(projectiles.Count > 0){ // there is a bullet to shoot
         GameObject shootme = projectiles.Dequeue();
@@ -67,8 +64,6 @@ public class BulletSpawner : MonoBehaviour
         shootme.GetComponent<BulletScript>().angle = angle;
         shootme.GetComponent<BulletScript>().speed = speed;
         shootme.GetComponent<BulletScript>().curve = curve;
-        shootme.GetComponent<BulletScript>().moveOutSpeedx = moveOutSpeedx;
-        shootme.GetComponent<BulletScript>().moveOutSpeedy = moveOutSpeedy;
         shootme.GetComponent<BulletScript>().expansion = expansion;
       } // if
       else {
@@ -86,7 +81,7 @@ public class BulletSpawner : MonoBehaviour
       for (int i = 0; i < poolSize1; i++){
         bullet = projectilesContainer.transform.GetChild(i);
         bullet.gameObject.GetComponent<BulletScript>().shot = false;
-        bullet.position = new Vector3(0,0,0);
+        bullet.position = boss.transform.position;
         if (bullet.transform.tag == "Projectile") {
             projectiles.Enqueue(bullet.gameObject);
             Debug.Log("Lost life. Enqueued bullets " + projectiles.Count);
@@ -107,7 +102,7 @@ public class BulletSpawner : MonoBehaviour
             bullet.gameObject.GetComponent<BulletScript>().angle = 0f;
             bullet.gameObject.GetComponent<BulletScript>().speed = 0f;
             bullet.gameObject.GetComponent<BulletScript>().shot = false;
-            bullet.transform.position = new Vector3(0,0,0);
+            bullet.transform.position = boss.transform.position;
             if (bullet.transform.tag == "Projectile") {
                 projectiles.Enqueue(bullet.gameObject);
                 Debug.Log("Enqueued bullet " + projectiles.Count);

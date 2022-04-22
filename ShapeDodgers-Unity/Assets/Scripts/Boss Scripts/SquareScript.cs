@@ -22,35 +22,30 @@ public class SquareScript : BossScript
     void Start()
     {
       b = BulletSpawner.GetComponent<BulletSpawner>();
-
-      if (b.loaded){ // bullet gameobjects have spawned in
-
-        // PLACE BULLET PATTERNS IN HERE; RUN THEM AS COROUTINES!
-        StartCoroutine( StartPatterns() );
-
-
-
-
+      if (b.loaded){ // ensure all bullet gameobjects have spawned in
+        StartCoroutine( StartPatterns() ); // start patterns
       } // end if loaded
     } // end start
 
       IEnumerator StartPatterns() {
-
-        StartCoroutine( PatternFour() );
-
+        StartCoroutine( RepeatFireRandomSpeed4() );
+        yield return new WaitForSeconds(8f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
         yield return new WaitForSeconds(2f);
-        StartCoroutine( PatternOne() );
-        yield return new WaitForSeconds(2f);
-        StartCoroutine( PatternTwo() );
+        StartCoroutine( PatternCircleBurstSpeed8() );
         yield return new WaitForSeconds(0.5f);
-        StartCoroutine( PatternOne() );
+        movespeed = 2; newpos = new Vector3(2, 0, 0);
+        StartCoroutine( RepeatFireRandomSpeed4() );
         yield return new WaitForSeconds(2f);
-        StartCoroutine( PatternTwo() );
-        yield return new WaitForSeconds(0.5f);
-        StartCoroutine( PatternThree() );
+        StartCoroutine( RepeatFireRandomSpeed6() );
+        movespeed = 2; newpos = new Vector3(-2, 0, 0);
         yield return new WaitForSeconds(2f);
-        StartCoroutine( PatternThree() );
-        yield return new WaitForSeconds(0.5f);
+        movespeed = 2; newpos = new Vector3(0, 0, 0);
+        StartCoroutine( RepeatFireRandomSpeed6() );
+        movespeed = 4; newpos = new Vector3(4, 0, 0);
+        yield return new WaitForSeconds(2f);
+        movespeed = 4; newpos = new Vector3(-4, 0, 0);
+        yield return new WaitForSeconds(2f);
       }
 
     /************** FOR PATTERNS: **************
@@ -63,11 +58,7 @@ public class SquareScript : BossScript
 
     */
 
-    void FireRandom() { // fires a bullet in each direction
-        b.ShootOne(Random.Range(0f, 45f), 4); b.ShootOne(Random.Range(45f, 90f), 4); b.ShootOne(Random.Range(90f, 135f), 4); b.ShootOne(Random.Range(135f, 180f), 4);
-    } // end fireRandom
-
-    IEnumerator PatternOne() {
+    /*IEnumerator PatternOne() {
         yield return new WaitForSeconds(0.5f); // waits 0.5 seconds
         b.ShootOne(0, 4); b.ShootOne(30, 4); b.ShootOne(60, 4); b.ShootOne(90, 4);
         yield return new WaitForSeconds(0.5f);
@@ -81,21 +72,43 @@ public class SquareScript : BossScript
         yield return new WaitForSeconds(0.5f);
         b.ShootOne(0, 4); b.ShootOne(30, 4); b.ShootOne(60, 4); b.ShootOne(90, 4);
         yield return new WaitForSeconds(0.5f);
-    } // end patternTwo
+    } // end patternTwo*/
 
-    IEnumerator PatternThree() {
+    IEnumerator PatternCircleBurstSpeed8() { // Makes a circular burst at speed 8
         yield return new WaitForSeconds(0.5f); // waits 0.5 seconds
         b.ShootOne(0, 8); b.ShootOne(12, 8); b.ShootOne(24, 8); b.ShootOne(36, 8); b.ShootOne(48, 8);
         b.ShootOne(60, 8); b.ShootOne(72, 8); b.ShootOne(84, 8); b.ShootOne(96, 8); b.ShootOne(108, 8);
-        b.ShootOne(112, 8); b.ShootOne(124, 8); b.ShootOne(136, 8); b.ShootOne(148, 8); b.ShootOne(152, 8);
-        b.ShootOne(164, 8); b.ShootOne(176, 8);
+        b.ShootOne(120, 8); b.ShootOne(132, 8); b.ShootOne(144, 8); b.ShootOne(156, 8); b.ShootOne(168, 8);
         yield return new WaitForSeconds(0.5f);
     } // end patternThree
 
-    IEnumerator PatternFour() {
-        InvokeRepeating("FireRandom", 0f, 0.5f);
+    IEnumerator RepeatFireRandomSpeed4() { // sets FireRandom() on repeat for 10 seconds at speed 4
+        InvokeRepeating("FireRandomSpeed4", 0f, 0.5f);
         yield return new WaitForSeconds(10f);
         CancelInvoke();
     } // end patternFour
+
+    IEnumerator RepeatFireRandomSpeed6() { // sets FireRandom() on repeat for 10 seconds at speed 6
+        InvokeRepeating("FireRandomSpeed6", 0f, 0.5f);
+        yield return new WaitForSeconds(10f);
+        CancelInvoke();
+    } // end patternFour
+
+    IEnumerator RepeatFireRandomSpeed8() { // sets FireRandom() on repeat for 10 seconds at speed 8
+        InvokeRepeating("FireRandomSpeed8", 0f, 0.5f);
+        yield return new WaitForSeconds(10f);
+        CancelInvoke();
+    } // end patternFour
+
+    void FireRandomSpeed4() { // Fires a bullet at speed 4 in each quadrant
+        b.ShootOne(Random.Range(0f, 45f), 4); b.ShootOne(Random.Range(45f, 90f), 4); b.ShootOne(Random.Range(90f, 135f), 4); b.ShootOne(Random.Range(135f, 180f), 4);
+    } // end fireRandom
+    void FireRandomSpeed6() { // Fires a bullet at speed 6 in each quadrant
+        b.ShootOne(Random.Range(0f, 45f), 4); b.ShootOne(Random.Range(45f, 90f), 4); b.ShootOne(Random.Range(90f, 135f), 4); b.ShootOne(Random.Range(135f, 180f), 4);
+    } // end fireRandom
+    void FireRandomSpeed8() { // Fires a bullet at speed 8 in each quadrant
+        b.ShootOne(Random.Range(0f, 45f), 4); b.ShootOne(Random.Range(45f, 90f), 4); b.ShootOne(Random.Range(90f, 135f), 4); b.ShootOne(Random.Range(135f, 180f), 4);
+    } // end fireRandom
+
 
   }
