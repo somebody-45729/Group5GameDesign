@@ -30,13 +30,13 @@ public class BossScript: MonoBehaviour
 		- called repeatedly from child class to create attack patterns
     */
 
-    private Queue<GameObject> projectiles = new Queue<GameObject>();
-
     public GameObject boss; // attach eye white gameobject!
     public GameObject eyeWhite; // attach eye white gameobject!
     public GameObject eyePupil; // attach eye pupil gameobject!
     public RectTransform pupilTransform;
     public SpriteRenderer bossSpriteRenderer;
+
+    public bool preAttack = false;
 
     void Start(){
        pupilTransform = eyePupil.GetComponent<RectTransform>();
@@ -51,11 +51,6 @@ public class BossScript: MonoBehaviour
     public void Fire(){
 
     } // end fire
-
-    public void Preattack(){
-        bossSpriteRenderer.color = Color.Lerp(new Color(1.0f, 0.0f, 1.0f, 1.0f), new Color(0.7f, 0.0f, 0.55f, 1.0f), (Time.time) / 0.9f);
-        bossSpriteRenderer.color = Color.Lerp(new Color(0.7f, 0.0f, 0.55f, 1.0f), new Color(1.0f, 0.0f, 1.0f, 1.0f), (Time.time) / 0.9f);
-    }
 
     void EyeTrackingPlayer(){ // FINISHED
       // eye tracking player
@@ -73,6 +68,12 @@ public class BossScript: MonoBehaviour
 
     void FixedUpdate(){
       EyeTrackingPlayer();
+      if (preAttack){
+          bossSpriteRenderer.color = Color.Lerp(new Color(1.0f, 0.0f, 1.0f, 1.0f), new Color(0.7f, 0.0f, 0.55f, 1.0f), (Time.time) / 3f);
+      }
+      else {
+          bossSpriteRenderer.color = Color.Lerp(new Color(0.7f, 0.0f, 0.55f, 1.0f), new Color(1.0f, 0.0f, 1.0f, 1.0f), (Time.time) / 3f);
+      }
 
     } // end fixedupdate
 

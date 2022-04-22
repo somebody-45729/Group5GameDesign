@@ -5,6 +5,8 @@ using UnityEngine;
 public class Playerstar : MonoBehaviour
 {
     GameManager gm; //reference to game manager
+    public GameObject bulletSpawner;
+
     public float speed = 1f;
     public float dashLength = 1f;
     private bool disableNextFrame = false;
@@ -25,12 +27,14 @@ public class Playerstar : MonoBehaviour
             this.GetComponent<TrailRenderer>().emitting = false; //stop dash animation before move starts
             this.transform.position = new Vector3(-10, -3.5f, 0);
             gm.LostLife();
+            bulletSpawner.GetComponent<BulletSpawner>().LostLifeReset();
         }
-        if (hitBy.transform.tag == "Projectile")
+        else if ((hitBy.transform.tag == "ProjectileLong")||(hitBy.transform.tag == "ProjectileRound"))
         {
             Debug.Log("Projectile hit player!");
             this.GetComponent<TrailRenderer>().emitting = false; //stop dash animation before move starts
             gm.LostLife();
+            bulletSpawner.GetComponent<BulletSpawner>().LostLifeReset();
         }
     }
 

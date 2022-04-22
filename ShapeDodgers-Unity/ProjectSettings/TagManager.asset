@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Boss
-  - Projectile
+  - ProjectileRound
+  - ProjectileLong
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - 
   - Water
   - UI
-  - AllowCollisions
-  - 
-  - 
+  - Boss
+  - Player
+  - Projectiles
   - 
   - 
   - 
