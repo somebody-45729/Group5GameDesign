@@ -13,9 +13,9 @@ TagManager:
   - 
   - Water
   - UI
-  - AllowCollisions
-  - 
-  - 
+  - Boss
+  - Player
+  - Projectiles
   - 
   - 
   - 
