@@ -19,14 +19,15 @@ public class BulletScript : MonoBehaviour
     BulletSpawner b;
     Rigidbody2D rb;
     public bool shot = false;
+    public bool shotSin = false;
     public float angle;
     public float speed;
+    public float amplitude;
     public int location;
-    public float curve = 0f;
-    public float expansion = 0f;
 
-    float currCurve = 0f;
-    float currExpansion = 1f;
+    // FOR SINWAVE
+    private float theta = 0;
+    private float thetaStep = Mathf.PI / 32f;
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +41,13 @@ public class BulletScript : MonoBehaviour
     void FixedUpdate()
     {
       if (shot == true){
-        currCurve += curve;
-        currExpansion += expansion;
-        transform.eulerAngles = new Vector3(0, 0, (currCurve + angle));
-        transform.Translate(currExpansion *(transform.right * speed * Time.deltaTime));
+        transform.eulerAngles = new Vector3(0, 0, (angle));
+        transform.Translate(transform.right * speed * Time.deltaTime);
+      } // shot == true
+      if (shotSin == true){
+        theta += thetaStep;
+        transform.eulerAngles = new Vector3(0, 0, (angle + amplitude * Mathf.Sin(theta)));
+        transform.Translate(transform.right * speed * Time.deltaTime);
       } // shot == true
 
     } // fixedupdate

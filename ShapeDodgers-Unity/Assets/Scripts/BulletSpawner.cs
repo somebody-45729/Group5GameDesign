@@ -46,8 +46,6 @@ public class BulletSpawner : MonoBehaviour
           shootme.GetComponent<BulletScript>().shot = true;
           shootme.GetComponent<BulletScript>().angle = angle;
           shootme.GetComponent<BulletScript>().speed = speed;
-          shootme.GetComponent<BulletScript>().curve = 0f;
-          shootme.GetComponent<BulletScript>().expansion = 0f;
         } // if
         else {
           Debug.Log(projectiles.Count + " bullets in pool! Increase pool size! ");
@@ -55,16 +53,15 @@ public class BulletSpawner : MonoBehaviour
     //bossScript.preAttack = false;
   } // end shootone
 
-  public void ShootOneSpin(float angle, float speed, float curve, float expansion){
+  public void ShootOneSin(float angle, float speed, float amplitude){
     //bossScript.preAttack = true;
       if(projectiles.Count > 0){ // there is a bullet to shoot
         GameObject shootme = projectiles.Dequeue();
           Debug.Log("Round bullet shot, " + projectiles.Count + " remaining in pool!");
-        shootme.GetComponent<BulletScript>().shot = true;
+        shootme.GetComponent<BulletScript>().shotSin = true;
         shootme.GetComponent<BulletScript>().angle = angle;
         shootme.GetComponent<BulletScript>().speed = speed;
-        shootme.GetComponent<BulletScript>().curve = curve;
-        shootme.GetComponent<BulletScript>().expansion = expansion;
+        shootme.GetComponent<BulletScript>().amplitude = amplitude;
       } // if
       else {
         Debug.Log(projectiles.Count + " bullets in pool! Increase pool size! ");
@@ -81,6 +78,7 @@ public class BulletSpawner : MonoBehaviour
       for (int i = 0; i < poolSize1; i++){
         bullet = projectilesContainer.transform.GetChild(i);
         bullet.gameObject.GetComponent<BulletScript>().shot = false;
+        bullet.gameObject.GetComponent<BulletScript>().shotSin = false;
         bullet.position = boss.transform.position;
         if (bullet.transform.tag == "Projectile") {
             projectiles.Enqueue(bullet.gameObject);
@@ -97,11 +95,13 @@ public class BulletSpawner : MonoBehaviour
       Transform bullet;
       for (int i = 0; i < poolSize1; i++){
         bullet = projectilesContainer.transform.GetChild(i);
-        if (bullet.gameObject.GetComponent<BulletScript>().shot){
+        if ((bullet.gameObject.GetComponent<BulletScript>().shot)||(bullet.gameObject.GetComponent<BulletScript>().shotSin)){
           if ((bullet.transform.position.x > 17)||(bullet.transform.position.x < -13)||(bullet.transform.position.y > 8)||(bullet.transform.position.y < -7)){
             bullet.gameObject.GetComponent<BulletScript>().angle = 0f;
             bullet.gameObject.GetComponent<BulletScript>().speed = 0f;
+            bullet.gameObject.GetComponent<BulletScript>().amplitude = 0f;
             bullet.gameObject.GetComponent<BulletScript>().shot = false;
+            bullet.gameObject.GetComponent<BulletScript>().shotSin = false;
             bullet.transform.position = boss.transform.position;
             if (bullet.transform.tag == "Projectile") {
                 projectiles.Enqueue(bullet.gameObject);

@@ -45,7 +45,13 @@ public class SquareScript : BossScript
         movespeed = 4; newpos = new Vector3(4, 0, 0);
         yield return new WaitForSeconds(2f);
         movespeed = 4; newpos = new Vector3(-4, 0, 0);
+        yield return new WaitForSeconds(5f);
+        movespeed = 4; newpos = new Vector3(0, 0, 0);
+        StartCoroutine( PatternSlowBurnSin() );
         yield return new WaitForSeconds(2f);
+        StartCoroutine( PatternSlowBurnSin() );
+        yield return new WaitForSeconds(1f);
+        StartCoroutine( PatternSlowBurnSin() );
       }
 
     /************** FOR PATTERNS: **************
@@ -53,26 +59,23 @@ public class SquareScript : BossScript
 
       b.ShootOne(angle, speed);
           * For angle: Q1 == 0 to 45 ; Q2 == 45 to 90; Q3 == 90 to 135; Q4 == 135 to 180/0
-          * 8 seems like a reasonable speed.
+          * 4 - 8 seem like reasonable speeds.
+
+      b.ShootOneSin(angle, speed, amplitude);
+          * For angle: Q1 == 0 to 45 ; Q2 == 45 to 90; Q3 == 90 to 135; Q4 == 135 to 180/0
+          * 4 - 8 seem like reasonable speeds.
+          * Amplitude determines the intensity of the wave. 8 seemms noticable.
 
 
     */
 
-    /*IEnumerator PatternOne() {
-        yield return new WaitForSeconds(0.5f); // waits 0.5 seconds
-        b.ShootOne(0, 4); b.ShootOne(30, 4); b.ShootOne(60, 4); b.ShootOne(90, 4);
-        yield return new WaitForSeconds(0.5f);
-        b.ShootOne(90, 4); b.ShootOne(120, 4); b.ShootOne(150, 4); b.ShootOne(180, 4);
-        yield return new WaitForSeconds(0.5f);
-    } // end patternOne
-
-    IEnumerator PatternTwo() {
-        yield return new WaitForSeconds(0.5f); // waits 0.5 seconds
-        b.ShootOne(90, 4); b.ShootOne(120, 4); b.ShootOne(150, 4); b.ShootOne(180, 4);
-        yield return new WaitForSeconds(0.5f);
-        b.ShootOne(0, 4); b.ShootOne(30, 4); b.ShootOne(60, 4); b.ShootOne(90, 4);
-        yield return new WaitForSeconds(0.5f);
-    } // end patternTwo*/
+    IEnumerator PatternSlowBurnSin() {
+        b.ShootOneSin(Random.Range(0f, 45f), 4, 8); b.ShootOneSin(Random.Range(45f, 90f), 4, 8); b.ShootOneSin(Random.Range(90f, 135f), 4, 8); b.ShootOneSin(Random.Range(135f, 180f), 4, 8);
+        yield return new WaitForSeconds(1.5f); // waits 0.5 seconds
+        b.ShootOneSin(Random.Range(0f, 45f), 6, 12); b.ShootOneSin(Random.Range(45f, 90f), 6, 12); b.ShootOneSin(Random.Range(90f, 135f), 6, 12); b.ShootOneSin(Random.Range(135f, 180f), 6, 12);
+        yield return new WaitForSeconds(1.5f); // waits 0.5 seconds
+        b.ShootOneSin(Random.Range(0f, 45f), 8, 16); b.ShootOneSin(Random.Range(45f, 90f), 8, 16); b.ShootOneSin(Random.Range(90f, 135f), 8, 16); b.ShootOneSin(Random.Range(135f, 180f), 8, 16);
+    } // end patternTwo
 
     IEnumerator PatternCircleBurstSpeed8() { // Makes a circular burst at speed 8
         yield return new WaitForSeconds(0.5f); // waits 0.5 seconds
