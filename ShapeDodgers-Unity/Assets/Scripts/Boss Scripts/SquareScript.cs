@@ -22,9 +22,7 @@ public class SquareScript : BossScript
     void Start()
     {
       b = BulletSpawner.GetComponent<BulletSpawner>();
-      if (b.loaded){ // ensure all bullet gameobjects have spawned in
         StartCoroutine( StartPatterns() ); // start patterns
-      } // end if loaded
     } // end start
 
       IEnumerator StartPatterns() {
