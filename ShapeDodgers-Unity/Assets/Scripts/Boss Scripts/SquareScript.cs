@@ -48,8 +48,41 @@ public class SquareScript : BossScript
         StartCoroutine( PatternSlowBurnSin() );
         yield return new WaitForSeconds(2f);
         StartCoroutine( PatternSlowBurnSin() );
-        yield return new WaitForSeconds(1f);
         StartCoroutine( PatternSlowBurnSin() );
+        yield return new WaitForSeconds(1f);
+        movespeed = 4; newpos = new Vector3(2, 2, 0);
+        yield return new WaitForSeconds(1f);
+        movespeed = 4; newpos = new Vector3(-2, -2, 0);
+        StartCoroutine( PatternHugeSin() );
+        yield return new WaitForSeconds(1f);
+        movespeed = 4; newpos = new Vector3(2, -2, 0);
+        StartCoroutine( RepeatFireRandomSpeed4() );
+        yield return new WaitForSeconds(1f);
+        movespeed = 4; newpos = new Vector3(-2, 2, 0);
+        yield return new WaitForSeconds(1f);
+        movespeed = 4; newpos = new Vector3(0, 0, 0);
+        yield return new WaitForSeconds(8f);
+        StartCoroutine( RepeatFireQ3() );
+        yield return new WaitForSeconds(3f);
+        StartCoroutine( RepeatFireQ2() );
+        yield return new WaitForSeconds(3f);
+        StartCoroutine( RepeatFireRandomSpeed8() );
+        StartCoroutine( RepeatFireQ4() );
+        yield return new WaitForSeconds(3f);
+        StartCoroutine( PatternHugeSin() );
+        StartCoroutine( RepeatFireQ1() );
+        StartCoroutine( RepeatFireRandomSpeed8() );
+        yield return new WaitForSeconds(3f);
+        StartCoroutine( RepeatFireQ3() );
+        yield return new WaitForSeconds(3f);
+        StartCoroutine( RepeatFireQ2() );
+        StartCoroutine( RepeatFireRandomSpeed8() );
+        yield return new WaitForSeconds(3f);
+        StartCoroutine( RepeatFireQ4() );
+        yield return new WaitForSeconds(3f);
+        StartCoroutine( RepeatFireQ1() );
+        StartCoroutine( RepeatFireRandomSpeed8() );
+
       }
 
     /************** FOR PATTERNS: **************
@@ -67,6 +100,16 @@ public class SquareScript : BossScript
 
     */
 
+    IEnumerator PatternHugeSin() {
+        b.ShootOneSin(0, 2, 40); b.ShootOneSin(90, 2, 40);
+        yield return new WaitForSeconds(0.5f); // waits 0.5 seconds
+        b.ShootOneSin(45, 2, 60); b.ShootOneSin(135, 2, 60);
+        yield return new WaitForSeconds(0.5f); // waits 0.5 seconds
+        InvokeRepeating("FireSinBarrierLines", 0f, 4f);
+        yield return new WaitForSeconds(20f);
+        CancelInvoke();
+    } // end patternTwo
+
     IEnumerator PatternSlowBurnSin() {
         b.ShootOneSin(Random.Range(0f, 45f), 4, 8); b.ShootOneSin(Random.Range(45f, 90f), 4, 8); b.ShootOneSin(Random.Range(90f, 135f), 4, 8); b.ShootOneSin(Random.Range(135f, 180f), 4, 8);
         yield return new WaitForSeconds(1.5f); // waits 0.5 seconds
@@ -82,6 +125,39 @@ public class SquareScript : BossScript
         b.ShootOne(120, 8); b.ShootOne(132, 8); b.ShootOne(144, 8); b.ShootOne(156, 8); b.ShootOne(168, 8);
         yield return new WaitForSeconds(0.5f);
     } // end patternThree
+
+    IEnumerator RepeatFireQ1() { // fire in quadrant 1
+      InvokeRepeating("FireQ1", 0f, 0.5f);
+      yield return new WaitForSeconds(5f);
+      CancelInvoke();
+    } // end
+    IEnumerator RepeatFireQ2() { // fire in quadrant 2
+      InvokeRepeating("FireQ2", 0f, 0.5f);
+      yield return new WaitForSeconds(5f);
+      CancelInvoke();
+    } // end
+    IEnumerator RepeatFireQ3() { // fire in quadrant 2
+      InvokeRepeating("FireQ3", 0f, 0.5f);
+      yield return new WaitForSeconds(5f);
+      CancelInvoke();
+    } // end
+    IEnumerator RepeatFireQ4() { // fire in quadrant 2
+      InvokeRepeating("FireQ4", 0f, 0.5f);
+      yield return new WaitForSeconds(5f);
+      CancelInvoke();
+    } // end
+    void FireQ1() { // Fires a bullet at speed 4 in each quadrant
+        b.ShootOne(Random.Range(0f, 45f), 4); b.ShootOne(Random.Range(0f, 45f), 4); b.ShootOne(Random.Range(0f, 45f), 4); b.ShootOne(Random.Range(0f, 45f), 4); b.ShootOne(Random.Range(0f, 45f), 4);
+    } // end
+    void FireQ2() { // Fires a bullet at speed 4 in each quadrant
+      b.ShootOne(Random.Range(45f, 90f), 4); b.ShootOne(Random.Range(45f, 90f), 4); b.ShootOne(Random.Range(45f, 90f), 4); b.ShootOne(Random.Range(45f, 90f), 4); b.ShootOne(Random.Range(45f, 90f), 4);
+    } // end
+    void FireQ3() { // Fires a bullet at speed 4 in each quadrant
+      b.ShootOne(Random.Range(90f, 135f), 4); b.ShootOne(Random.Range(90f, 135f), 4); b.ShootOne(Random.Range(90f, 135f), 4); b.ShootOne(Random.Range(90f, 135f), 4); b.ShootOne(Random.Range(90f, 135f), 4);
+    } // end
+    void FireQ4() { // Fires a bullet at speed 4 in each quadrant
+      b.ShootOne(Random.Range(135f, 180f), 4); b.ShootOne(Random.Range(135f, 180f), 4); b.ShootOne(Random.Range(135f, 180f), 4); b.ShootOne(Random.Range(135f, 180f), 4); b.ShootOne(Random.Range(135f, 180f), 4);
+    } // end
 
     IEnumerator RepeatFireRandomSpeed4() { // sets FireRandom() on repeat for 10 seconds at speed 4
         InvokeRepeating("FireRandomSpeed4", 0f, 0.5f);
@@ -109,6 +185,9 @@ public class SquareScript : BossScript
     } // end fireRandom
     void FireRandomSpeed8() { // Fires a bullet at speed 8 in each quadrant
         b.ShootOne(Random.Range(0f, 45f), 4); b.ShootOne(Random.Range(45f, 90f), 4); b.ShootOne(Random.Range(90f, 135f), 4); b.ShootOne(Random.Range(135f, 180f), 4);
+    } // end fireRandom
+    void FireSinBarrierLines() { // Fires a sin bullet at speed 4 in each quadrant
+      b.ShootOneSin(0, 4, 80); b.ShootOneSin(90, 4, 80); b.ShootOneSin(45, 4, 80); b.ShootOneSin(135, 4, 80);
     } // end fireRandom
 
 
