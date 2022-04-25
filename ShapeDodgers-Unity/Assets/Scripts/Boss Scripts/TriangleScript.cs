@@ -43,31 +43,95 @@ public class TriangleScript : BossScript
         StartCoroutine( PatternCircleBurstSpeed8() );
         yield return new WaitForSeconds(2f);
         StartCoroutine( PatternCircleBurstSpeed8() );
-        StartCoroutine( RepeatFireRandomSpeed4() );
+        StartCoroutine( RepeatFireCircleburst() );
         movespeed = 2; newpos = new Vector3(6.7f, 4, 0);
         StartCoroutine( PatternCircleBurstSpeed8() );
         yield return new WaitForSeconds(1f);
-
-
-        /*StartCoroutine( RepeatFireRandomSpeed8() );
-        yield return new WaitForSeconds(8f);
+        StartCoroutine( RepeatFireRandomSpeed8() );
+        StartCoroutine( RepeatFireCircleburst() );
+        yield return new WaitForSeconds(1f);
         StartCoroutine( PatternCircleBurstSpeed8() );
+        StartCoroutine( RepeatFireCircleburst() );
         yield return new WaitForSeconds(2f);
         StartCoroutine( PatternCircleBurstSpeed8() );
+        StartCoroutine( RepeatFireRandomSpeed4() );
         yield return new WaitForSeconds(0.5f);
         movespeed = 2; newpos = new Vector3(2, 0, 0);
-        StartCoroutine( RepeatFireRandomSpeed4() );
+        StartCoroutine( RepeatFireCircleburst() );
+        StartCoroutine( PatternCircleBurstSpeed8() );
         yield return new WaitForSeconds(2f);
-        StartCoroutine( RepeatFireRandomSpeed6() );
+        StartCoroutine( RepeatFireCircleburst() );
         movespeed = 2; newpos = new Vector3(-2, 0, 0);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        StartCoroutine( RepeatFireCircleburst() );
+        yield return new WaitForSeconds(1f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        yield return new WaitForSeconds(0.5f);
         movespeed = 2; newpos = new Vector3(0, 0, 0);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        StartCoroutine( RepeatFireCircleburst() );
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        StartCoroutine( RepeatFireRandomSpeed4() );
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine( RepeatFireCircleburst() );
         StartCoroutine( RepeatFireRandomSpeed6() );
         movespeed = 4; newpos = new Vector3(4, 0, 0);
         yield return new WaitForSeconds(2f);
+        StartCoroutine( RepeatFireCircleburst() ); StartCoroutine( RepeatFireRandomSpeed4() );
+        yield return new WaitForSeconds(2f);
+        StartCoroutine( PatternSlowBurnSin() );
+        StartCoroutine( RepeatFireCircleburst() ); StartCoroutine( RepeatFireRandomSpeed4() );
         movespeed = 4; newpos = new Vector3(-4, 0, 0);
-        yield return new WaitForSeconds(5f);
-        movespeed = 4; newpos = new Vector3(0, 0, 0);*/
+        yield return new WaitForSeconds(2f);
+        StartCoroutine( PatternSlowBurnSin() ); StartCoroutine( PatternCircleBurstSpeed8() );
+        StartCoroutine( RepeatFireCircleburst() );
+        movespeed = 4; newpos = new Vector3(0, 0, 0);
+         StartCoroutine( PatternCircleBurstSpeed8() );
+        StartCoroutine( RepeatFireCircleburst() ); StartCoroutine( RepeatFireRandomSpeed4() );
+
+        movespeed = 4; newpos = new Vector3(2, -2, 0);
+        yield return new WaitForSeconds(1f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        yield return new WaitForSeconds(1f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        yield return new WaitForSeconds(1f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        yield return new WaitForSeconds(1f);
+        StartCoroutine( RepeatFireCircleburst() ); StartCoroutine( RepeatFireRandomSpeed4() );
+        yield return new WaitForSeconds(2f);
+        movespeed = 2; newpos = new Vector3(0, 3, 0);
+        StartCoroutine( RepeatFireRandomSpeed4() );
+        yield return new WaitForSeconds(1f);
+        movespeed = 2; newpos = new Vector3(-3, -1, 0);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        yield return new WaitForSeconds(2f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        StartCoroutine( RepeatFireCircleburst() ); StartCoroutine( RepeatFireRandomSpeed4() );
+        movespeed = 2; newpos = new Vector3(2f, 1, 0);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        yield return new WaitForSeconds(1f);
+        StartCoroutine( RepeatFireRandomSpeed8() );
+        StartCoroutine( RepeatFireCircleburst() );
+        yield return new WaitForSeconds(1f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        StartCoroutine( RepeatFireCircleburst() );
+        yield return new WaitForSeconds(2f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        StartCoroutine( RepeatFireRandomSpeed4() );
+        StartCoroutine( RepeatFireRandomSpeed4() );
+        yield return new WaitForSeconds(1f);
+        movespeed = 2; newpos = new Vector3(0, -1, 0);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        yield return new WaitForSeconds(2f);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        StartCoroutine( RepeatFireCircleburst() ); StartCoroutine( RepeatFireRandomSpeed4() );
+        movespeed = 2; newpos = new Vector3(0, 0, 0);
+        StartCoroutine( PatternCircleBurstSpeed8() );
+        yield return new WaitForSeconds(1f);
 
       }
 
@@ -163,7 +227,7 @@ public class TriangleScript : BossScript
     } // end patternFour
 
     IEnumerator RepeatFireCircleburst() { // sets FireRandom() on repeat for 10 seconds at speed 8
-        InvokeRepeating("FireCircleburst", 0f, 0.5f);
+        InvokeRepeating("FireCircleburst", 0f, 1f);
         yield return new WaitForSeconds(5f);
         CancelInvoke();
     } // end patternFour

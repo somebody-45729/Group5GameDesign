@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
     static public int lives; // number of lives for player
     public int Lives { get { return lives; } set { lives = value; } }//access to static variable lives [get/set methods]
     public float timeRemaining = 60;
+    float timeDefault;
     public bool timerIsRunning = false;
     public float Timer { get { return timeRemaining; } }//access to static variable score [get/set methods]
 
@@ -124,6 +125,8 @@ public class GameManager : MonoBehaviour
     //Awake is called when the game loads (before Start).  Awake only once during the lifetime of the script instance.
     void Awake()
     {
+
+      timeDefault = timeRemaining;
         //runs the method to check for the GameManager
         CheckGameManagerIsInScene();
         //store the current scene
@@ -176,7 +179,7 @@ public class GameManager : MonoBehaviour
     }//end Update
 
     public void ResetTimer(){
-      timeRemaining = 60f;
+      timeRemaining = timeDefault;
     }
 
 
