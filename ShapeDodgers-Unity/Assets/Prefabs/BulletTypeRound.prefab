@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1420867689440885150}
   - component: {fileID: 1420867689440885145}
   - component: {fileID: 1420867689440885144}
+  - component: {fileID: 974567489027556228}
   m_Layer: 8
   m_Name: BulletTypeRound
   m_TagString: Projectile
@@ -154,10 +155,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpawner: {fileID: 515666744168126527, guid: f89fffef2a5a442c38399b828e9be4f8, type: 3}
-  boss: {fileID: 1885521589993522248, guid: bcac69dd3e40149a8b58980892ba90d1, type: 3}
   shot: 0
+  shotSin: 0
+  shotCircle: 0
   angle: 0
   speed: 0
+  amplitude: 0
   location: 0
-  curve: 0
-  expansion: 0
+--- !u!114 &974567489027556228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420867689440885149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958e6cf13d4514339880e15825e4c06a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 0}
+  eyeWhite: {fileID: 0}
+  eyePupil: {fileID: 0}
+  pupilTransform: {fileID: 0}
+  bossSpriteRenderer: {fileID: 0}
+  newpos: {x: 0, y: 0, z: 0}
+  movespeed: 2
+  BulletSpawner: {fileID: 0}
