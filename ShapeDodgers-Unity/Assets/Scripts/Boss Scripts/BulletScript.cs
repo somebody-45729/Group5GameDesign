@@ -20,6 +20,7 @@ public class BulletScript : MonoBehaviour
     Rigidbody2D rb;
     public bool shot = false;
     public bool shotSin = false;
+    public bool shotCircle = false;
     public float angle;
     public float speed;
     public float amplitude;
@@ -47,6 +48,11 @@ public class BulletScript : MonoBehaviour
       if (shotSin == true){
         theta += thetaStep;
         transform.eulerAngles = new Vector3(0, 0, (angle + amplitude * Mathf.Sin(theta)));
+        transform.Translate(transform.right * speed * Time.deltaTime);
+      } // shot == true
+      if (shotCircle == true){
+        theta += thetaStep;
+        transform.eulerAngles = new Vector3(0, 0, (angle + amplitude * theta));
         transform.Translate(transform.right * speed * Time.deltaTime);
       } // shot == true
 

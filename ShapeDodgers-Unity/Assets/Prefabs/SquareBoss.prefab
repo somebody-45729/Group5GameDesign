@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 1885521589993522253}
   - component: {fileID: 1885521589993522252}
   m_Layer: 6
-  m_Name: Boss
+  m_Name: SquareBoss
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

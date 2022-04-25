@@ -69,6 +69,22 @@ public class BulletSpawner : MonoBehaviour
   //bossScript.preAttack = false;
 } // end shootone
 
+public void ShootOneCircle(float angle, float speed, float amplitude){
+  //bossScript.preAttack = true;
+    if(projectiles.Count > 0){ // there is a bullet to shoot
+      GameObject shootme = projectiles.Dequeue();
+        Debug.Log("Round bullet shot, " + projectiles.Count + " remaining in pool!");
+      shootme.GetComponent<BulletScript>().shotCircle = true;
+      shootme.GetComponent<BulletScript>().angle = angle;
+      shootme.GetComponent<BulletScript>().speed = speed;
+      shootme.GetComponent<BulletScript>().amplitude = amplitude;
+    } // if
+    else {
+      Debug.Log(projectiles.Count + " bullets in pool! Increase pool size! ");
+    }
+//bossScript.preAttack = false;
+} // end shootone
+
 
     public void LostLifeReset(){
       Transform bullet;
@@ -79,6 +95,7 @@ public class BulletSpawner : MonoBehaviour
         bullet = projectilesContainer.transform.GetChild(i);
         bullet.gameObject.GetComponent<BulletScript>().shot = false;
         bullet.gameObject.GetComponent<BulletScript>().shotSin = false;
+        bullet.gameObject.GetComponent<BulletScript>().shotCircle = false;
         bullet.position = boss.transform.position;
         if (bullet.transform.tag == "Projectile") {
             projectiles.Enqueue(bullet.gameObject);
@@ -95,13 +112,14 @@ public class BulletSpawner : MonoBehaviour
       Transform bullet;
       for (int i = 0; i < poolSize1; i++){
         bullet = projectilesContainer.transform.GetChild(i);
-        if ((bullet.gameObject.GetComponent<BulletScript>().shot)||(bullet.gameObject.GetComponent<BulletScript>().shotSin)){
+        if ((bullet.gameObject.GetComponent<BulletScript>().shot)||(bullet.gameObject.GetComponent<BulletScript>().shotSin)||(bullet.gameObject.GetComponent<BulletScript>().shotCircle)){
           if ((bullet.transform.position.x > 17)||(bullet.transform.position.x < -13)||(bullet.transform.position.y > 8)||(bullet.transform.position.y < -7)){
             bullet.gameObject.GetComponent<BulletScript>().angle = 0f;
             bullet.gameObject.GetComponent<BulletScript>().speed = 0f;
             bullet.gameObject.GetComponent<BulletScript>().amplitude = 0f;
             bullet.gameObject.GetComponent<BulletScript>().shot = false;
             bullet.gameObject.GetComponent<BulletScript>().shotSin = false;
+            bullet.gameObject.GetComponent<BulletScript>().shotCircle = false;
             bullet.transform.position = boss.transform.position;
             if (bullet.transform.tag == "Projectile") {
                 projectiles.Enqueue(bullet.gameObject);

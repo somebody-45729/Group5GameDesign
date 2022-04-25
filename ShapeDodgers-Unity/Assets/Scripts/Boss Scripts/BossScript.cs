@@ -40,14 +40,11 @@ public class BossScript: MonoBehaviour
     public float movespeed = 2f;
 
     void Start(){
+
        pupilTransform = eyePupil.GetComponent<RectTransform>();
        bossSpriteRenderer = GetComponent<SpriteRenderer>();
        bossSpriteRenderer.color = new Color(1.0f, 0.0f, 1.0f, 1.0f);
     } // end start
-
-    public void Fire(){
-
-    } // end fire
 
     void EyeTrackingPlayer(){ // FINISHED
       // eye tracking player

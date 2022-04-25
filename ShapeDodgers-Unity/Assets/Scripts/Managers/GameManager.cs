@@ -3,7 +3,7 @@
  * Date Created: Feb 23, 2022
  *
  * Last Edited by: Haley Kelly
- * Last Edited: April 17, 2022
+ * Last Edited: April 23, 2022
  *
  * Description: Basic GameManager Template
 ****/
@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     //Check to make sure only one gm of the GameManager is in the scene
     void CheckGameManagerIsInScene()
     {
-
         //Check if instnace is null
         if (gm == null)
         {
@@ -49,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     [Header("GENERAL SETTINGS")]
     public string gameTitle = "Shape Dodgers";  //name of the game
-    public string gameCredits = "Made by Me"; //game creator(s)
+    public string gameCredits = "Haley Kelly, J.P. Tucker, Kyunghoon Han"; //game creator(s)
     public string copyrightDate = "Copyright " + thisDay; //date cretaed
 
     [Header("GAME SETTINGS")]
@@ -92,9 +91,6 @@ public class GameManager : MonoBehaviour
     [Tooltip("Name of the game over scene")]
     public string gameOverScene;
 
-    [Tooltip("Name of the game win scene")]
-    public string gameWinScene;
-
     [Tooltip("Count and name of each Game Level (scene)")]
     public string[] gameLevels; //names of levels
     [HideInInspector]
@@ -130,13 +126,12 @@ public class GameManager : MonoBehaviour
     {
         //runs the method to check for the GameManager
         CheckGameManagerIsInScene();
-
         //store the current scene
         currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
-        //Get the saved high score
-        //GetHighScore();
-
+        if ((currentSceneName != startScene)&&(currentSceneName != gameOverScene) ) {
+            timerIsRunning = true;
+        }
     }//end Awake()
 
 
@@ -214,7 +209,6 @@ public class GameManager : MonoBehaviour
 
             case GameState.LostLevel:
                 endMsg = looseMessage; //set loose message
-                GameOver(); //move to game over
                 break;
 
             case GameState.GameOver:
@@ -238,6 +232,8 @@ public class GameManager : MonoBehaviour
         //load first game level
         SceneManager.LoadScene(gameLevels[loadLevel]);
         ResetTimer();
+        timerIsRunning = true;
+        lives = 3;
 
         SetDefaultGameStats(); // the game stats defaults
 
@@ -285,7 +281,7 @@ public class GameManager : MonoBehaviour
     //GO TO THE GAME OVER SCENE
     public void GameOver()
     {
-        SetGameState(GameState.GameOver);//set the game state to Game Over
+        SetGameState(GameState.LostLevel);//set the game state to Game Over
 
         SceneManager.LoadScene(gameOverScene); //load the game over scene
 
@@ -293,9 +289,9 @@ public class GameManager : MonoBehaviour
 
     public void GameWin()
     {
-        SetGameState(GameState.GameOver);//set the game state to Game Over
+        SetGameState(GameState.BeatLevel);//set the game state to Game Over
 
-        SceneManager.LoadScene(gameWinScene); //load the game win scene
+        SceneManager.LoadScene(gameOverScene); //load the game win scene
 
     }//end GameOver()
 
@@ -303,7 +299,6 @@ public class GameManager : MonoBehaviour
     //GO TO THE NEXT LEVEL
     void NextLevel()
     {
-
         //as long as our level count is not more than the amount of levels
         if (gameLevelsCount < gameLevels.Length)
         {
@@ -311,9 +306,10 @@ public class GameManager : MonoBehaviour
             loadLevel = gameLevelsCount - 1; //find the next level in the array
             SceneManager.LoadScene(gameLevels[loadLevel]); //load next level
 
-            SetGameState(GameState.Playing);//set the game state to playing
             ResetTimer();
-
+            SetGameState(GameState.Playing);//set the game state to playing
+            lives = 3;
+            timerIsRunning = true;
         }
         else
         { //if we have run out of levels go to game over
@@ -326,55 +322,13 @@ public class GameManager : MonoBehaviour
     //PLAYER LOST A LIFE
     public void LostLife()
     {
-
-        if (lives == 1) //if there is one life left and it is lost
-        {
+        if (lives == 1) {
             GameOver(); //game is over
-
         }
-        else
-        {
+        else {
             lives--; //subtract from lives reset level lost
-
-            //if this level resets when life is lost
-            if (resetLostLevel){
-                numberOfLives = lives; //set lives left for level reset
-                StartGame(); //restart the level
-            }//end if (resetLostLevel)
-
         } // end elseif
     }//end LostLife()
-
-
-    //CHECK SCORE UPDATES
-    public void UpdateScore(int point = 0)
-    { //This method manages the score on update.
-
-        score += point;
-
-        /*
-        //if the score is more than the high score
-        if (score > highScore)
-        {
-            highScore = score; //set the high score to the current score
-            PlayerPrefs.SetInt("HighScore", highScore); //set the playerPref for the high score
-        }//end if(score > highScore)*/
-
-    }//end CheckScore()
-
-    /*void GetHighScore()
-    {//Get the saved highscore
-
-        //if the PlayerPref alredy exists for the high score
-        if (PlayerPrefs.HasKey("HighScore"))
-        {
-            Debug.Log("Has Key");
-            highScore = PlayerPrefs.GetInt("HighScore"); //set the high score to the saved high score
-        }//end if (PlayerPrefs.HasKey("HighScore"))
-
-        PlayerPrefs.SetInt("HighScore", highScore); //set the playerPref for the high score
-    }//end GetHighScore()*/
-
 
     private void RunTests()
     {

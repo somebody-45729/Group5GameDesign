@@ -1,3 +1,13 @@
+/****
+ * Created by: J.P. Tucker
+ * Date Created: April 15, 2022
+ *
+ * Last Edited by: Haley Kelly
+ * Last Edited: April 23, 2022
+ *
+ * Description: controls player movement
+****/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,7 +53,9 @@ public class Playerstar : MonoBehaviour
     {
         var targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetPos.z = transform.position.z;
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        if ((targetPos.x < 9.5)&&(targetPos.x > -9.5)&&(targetPos.y < 6)&&(targetPos.y > -4)){
+          transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        }
 
         if(disableNextFrame)
         {

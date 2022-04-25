@@ -1,10 +1,10 @@
-/**** 
+/****
  * Created by: Akram Taghavi-Burris
  * Date Created: Feb 23, 2022
- * 
- * Last Edited by: NA
- * Last Edited: Feb 23, 2022
- * 
+ *
+ * Last Edited by: Haley Kelly
+ * Last Edited: April 23, 2022
+ *
  * Description: Updates start canvas referecing game manager
 ****/
 
@@ -16,7 +16,7 @@ using UnityEngine.UI; //libraries for UI components
 public class StartCanvas : MonoBehaviour
 {
     /*** VARIABLES ***/
-   
+
     GameManager gm; //reference to game manager
 
     [Header("Canvas SETTINGS")]
@@ -27,9 +27,9 @@ public class StartCanvas : MonoBehaviour
     private void Start()
     {
          gm = GameManager.GM; //find the game manager
-         
+
          //Set the Canvas text from GM reference
-         titleTextbox.text = gm.gameTitle; 
+         titleTextbox.text = gm.gameTitle;
          creditsTextbox.text = gm.gameCredits;
          copyrightTextbox.text = gm.copyrightDate;
     }
