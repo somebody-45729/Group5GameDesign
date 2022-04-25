@@ -43,7 +43,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="HUDCanvas">
-    <Position X="9.5" Y="0.75" Width="1.5" />
+    <Position X="9.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQBAAAAACkAQEQBAAAAAAIAAAMAAAEAgACAAAEAAAQ=</HashCode>
       <FileName>Assets\Scripts\Canvas Managers\HUDCanvas.cs</FileName>
@@ -57,7 +57,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GameManager">
-    <Position X="6" Y="5.25" Width="1.5" />
+    <Position X="11.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAYAjQwEEGAEFEwAIQQIAAGsIQpgAAAKAAEgAAIkAEQ=</HashCode>
       <FileName>Assets\Scripts\Managers\GameManager.cs</FileName>
