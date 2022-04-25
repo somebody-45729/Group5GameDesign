@@ -358,7 +358,7 @@ MonoBehaviour:
   copyrightDate: Copyright 2022
   numberOfLives: 3
   resetLostLevel: 0
-  timeRemaining: 60
+  timeRemaining: 45
   timerIsRunning: 0
   defaultEndMessage: Game Over
   looseMessage: Game Lost
